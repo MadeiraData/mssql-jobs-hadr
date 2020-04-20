@@ -45,7 +45,7 @@ ON
 OR (Config.ConfigType = 'category' AND jc.name LIKE Config.ItemName)
 OR (Config.ConfigType = 'step' AND js.step_name LIKE Config.ItemName)
 LEFT JOIN (
-SELECT d.name AS databasename, dbm.mirroring_role_desc AS role_desc
+SELECT d.[name] AS databasename, dbm.mirroring_role_desc AS role_desc
 FROM sys.databases d
 INNER JOIN sys.database_mirroring dbm ON d.database_id = dbm.database_id
 WHERE dbm.mirroring_role_desc IS NOT NULL
@@ -59,6 +59,7 @@ group by j.job_id, j.name, jc.name, j.enabled
 --, ag.role_desc
 ) AS q
 WHERE enabled <> desired_state
+ORDER BY job_name
 
 OPEN JobsToUpdate
 FETCH NEXT FROM JobsToUpdate INTO @CurrJob, @CurrentRole, @JobDesiredState
