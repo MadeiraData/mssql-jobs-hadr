@@ -18,6 +18,10 @@ This is an XML parameter that can contain special configurations that specify wh
 
 More info TBA
 
+## Permissions
+
+TBA
+
 ## Examples
 
 TBA
