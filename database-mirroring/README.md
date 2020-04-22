@@ -16,7 +16,15 @@ Set the name to be used for the alert triggered by state change events.
 
 This is an XML parameter that can contain special configurations that specify when certain jobs should be enabled or disabled, based on a database role.
 
-More info TBA
+This XML parameter can contain a **list of job names**, **job step names** or a **list of job category names**, for which **special use cases** need to be applied. 
+Specifically, where the jobs should run:
+
+- `both` - On **both Primary and Secondary**
+- `secondary` - On **Secondary only**
+- `primary` - On **Primary only** (this is also the **default**)
+- `never` - **Never** (if you want certain jobs to always remain disabled)
+
+[More info TBA](https://eitanblumin.com/?p=938)
 
 ## Permissions
 
