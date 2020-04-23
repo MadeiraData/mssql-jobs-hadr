@@ -6,8 +6,6 @@ This repository contains solutions to properly control and maintain **scheduled 
 
 This solution is an improved version of the scripts provided at [Automatically Enable or Disable Jobs Based on HADR Role](https://eitanblumin.com/2018/11/06/automatically-enable-or-disable-jobs-based-on-hadr-role/).
 
-{% include include-xml-argument-md.md %}
-
 ## Permissions
 
 Only members of the `sysadmin` fixed server role can run these scripts.
