@@ -1,28 +1,37 @@
 # SQL Server Jobs & AlwaysOn Availability Groups Interoperability
 
-This folder contains the script [AlwaysOn - Master Control Job and Alert.sql](AlwaysOn%20-%20Master%20Control%20Job%20and%20Alert.sql) to properly control **scheduled jobs on SQL Servers** with **Availability Groups**.
+<Token>**APPLIES TO:** ![Yes](../media/yes-icon.png)SQL Server ![Yes](../media/yes-icon.png)Azure SQL Database (Managed Instance only) ![No](../media/no-icon.png)Azure Synapse Analytics (SQL DW) ![No](../media/no-icon.png)Parallel Data Warehouse </Token>
 
-## Parameters
+This folder contains the script [AlwaysOn - Master Control Job and Alert.sql](AlwaysOn%20-%20Master%20Control%20Job%20and%20Alert.sql) which can automatically **enable or disable SQL Server jobs** based on the **Availability Groups role** of their respective database(s).
 
-`@MasterControlJobName = N'AlwaysOn: Master Control Job'`
+The script will create one **scheduled job**, and one **alert**.
 
-Set the name to be used for the master control job.
+In this page:
 
-`@AlertName = N'AlwaysOn: Role Changes'`
+- [Prerequisites](#prerequisites)
+- [Arguments](#arguments)
+- [Remarks](#remarks)
+- [Permissions](#permissions)
+- [Examples](#examples)
+- [See Also](#see-also)
 
-Set the name to be used for the alert triggered by role change events.
+## Prerequisites
 
-`@SpecialConfigurations`
+The script only supports **SQL Server versions 2012 and later**, that have **SQL Server Agent** available (**Express** editions and **SQL Azure DB** are _not_ supported).
 
-This is an XML parameter that can contain special configurations that specify when certain jobs should be enabled or disabled, based on a database role.
+To install the script, simply run it on your servers involved in an HA/DR architecture.
 
-This XML parameter can contain a **list of job names**, **job step names** or a **list of job category names**, for which **special use cases** need to be applied. 
-Specifically, where the jobs should run:
+You may change the values of the variables at the top of the script, if you want to customize the solution.
 
-- `both` - On **both Primary and Secondary**
-- `secondary` - On **Secondary only**
-- `primary` - On **Primary only** (this is also the **default**)
-- `never` - **Never** (if you want certain jobs to always remain disabled)
+See the "Arguments" section below for more info.
+
+## Arguments
+
+`SET @MasterControlJobName = N'DB Mirroring: Master Control Job'` sets the name to be used for the master control job.
+
+`SET @AlertName = N'DB Mirroring: State Changes'` sets the name to be used for the alert triggered by state change events.
+
+[!INCLUDE[include-xml-argument-md](../include-xml-argument-md.md)]
 
 ## Remarks
 
