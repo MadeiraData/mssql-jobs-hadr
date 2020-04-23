@@ -17,4 +17,4 @@ navbar-links:
   Database Mirroring: "database-mirroring"
   Classic Version: "classic"
   Madeira Data Solutions: "https://www.madeiradata.com"
-theme: jekyll-theme-minimal
+theme: jekyll-theme-leap-day
