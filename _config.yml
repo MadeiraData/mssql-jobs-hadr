@@ -1,5 +1,5 @@
 baseurl: "/mssql-jobs-hadr"
-logo: media/madeira_icon.png
+logo: /media/madeira_icon.png
 social-network-links:
   rss: false
   email: "eitan@madeiradata.com"
