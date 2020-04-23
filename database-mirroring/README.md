@@ -26,6 +26,10 @@ Specifically, where the jobs should run:
 
 [More info TBA](https://eitanblumin.com/?p=938)
 
+## Remarks
+
+TBA
+
 ## Permissions
 
 Only members of the `sysadmin` fixed server role can run this script.
@@ -34,10 +38,6 @@ Only members of the `sysadmin` fixed server role can run this script.
 
 TBA
 
-## Remarks
-
-TBA
-
 ## See Also
 
-- TBA
+- [TBA](https://eitanblumin.com/?p=938)
