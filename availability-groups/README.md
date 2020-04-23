@@ -24,20 +24,18 @@ Specifically, where the jobs should run:
 - `primary` - On **Primary only** (this is also the **default**)
 - `never` - **Never** (if you want certain jobs to always remain disabled)
 
-[More info TBA](https://eitanblumin.com/?p=938)
+## Remarks
+
+[TBA](https://eitanblumin.com/?p=938)
 
 ## Permissions
 
-TBA
+Only members of the `sysadmin` fixed server role can run this script.
 
 ## Examples
 
 TBA
 
-## Remarks
-
-TBA
-
 ## See Also
 
-- TBA
+- [TBA](https://eitanblumin.com/?p=938)
