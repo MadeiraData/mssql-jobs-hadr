@@ -2,7 +2,7 @@
 
 This folder contains the script [DB Mirroring - Master Control Job and Alert.sql](DB%20Mirroring%20-%20Master%20Control%20Job%20and%20Alert.sql) to properly control **scheduled jobs on SQL Servers** with **Database Mirroring**.
 
-## Parameters
+## Arguments
 
 `@MasterControlJobName = N'DB Mirroring: Master Control Job'`
 
