@@ -1,5 +1,5 @@
 ---
-title: "SQL Server Jobs & AlwaysOn Availability Groups Interoperability (Transact-SQL) | Madeira Data Solutions"
+title: "SQL Server Jobs & Database Mirroring Interoperability (Transact-SQL) | Madeira Data Solutions"
 dev_langs: 
   - "TSQL"
 author: EitanBlumin
