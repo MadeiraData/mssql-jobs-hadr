@@ -1,7 +1,12 @@
 # SQL Server Jobs & HA/DR
 
-This repository contains solutions to properly control and maintain **scheduled jobs on SQL Servers** with either **Availability Groups** or **Database Mirroring**.
+This repository contains scripts to automatically enable or disable specific **scheduled jobs on SQL Servers** based on the database role **Availability Groups** or **Database Mirroring**.
 
-For more information please visit the following:
+## Download
+
+- [`ChangeJobStatusBasedOnHADR.sql`](ChangeJobStatusBasedOnHADR.sql)
+- [`ChangeJobStatusBasedOnMirroring.sql`](ChangeJobStatusBasedOnMirroring.sql)
+
+## See Also
 
 - [Automatically Enable or Disable Jobs based on HADR Role](https://eitanblumin.com/2018/11/06/automatically-enable-or-disable-jobs-based-on-hadr-role/)
