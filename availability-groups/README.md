@@ -15,8 +15,8 @@ The script will create one **scheduled job**, and one **alert**.
 In this page:
 
 - [Download](#download)
-- [Prerequisites](#prerequisites)
 - [Arguments](#arguments)
+- [Prerequisites](#prerequisites)
 - [Remarks](#remarks)
 - [Permissions](#permissions)
 - [Examples](#examples)
@@ -25,6 +25,14 @@ In this page:
 ## Download
 
 - [AlwaysOn - Master Control Job and Alert.sql](AlwaysOn%20-%20Master%20Control%20Job%20and%20Alert.sql)
+
+## Arguments
+
+`SET @MasterControlJobName = N'AlwaysOn: Master Control Job'` sets the name to be used for the master control job.
+
+`SET @AlertName = N'AlwaysOn: Role Changes'` sets the name to be used for the alert triggered by role change events.
+
+{% include include-xml-argument-md.md %}
 
 ## Prerequisites
 
@@ -35,14 +43,6 @@ To install the script, simply run it on your servers involved in an HA/DR archit
 You may change the values of the variables at the top of the script, if you want to customize the solution.
 
 See the "Arguments" section below for more info.
-
-## Arguments
-
-`SET @MasterControlJobName = N'AlwaysOn: Master Control Job'` sets the name to be used for the master control job.
-
-`SET @AlertName = N'AlwaysOn: Role Changes'` sets the name to be used for the alert triggered by role change events.
-
-{% include include-xml-argument-md.md %}
 
 ## Remarks
 
