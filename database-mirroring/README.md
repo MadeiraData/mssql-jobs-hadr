@@ -6,7 +6,8 @@ author: EitanBlumin
 ---
 # SQL Server Jobs & Database Mirroring Interoperability
 
-<Token>**APPLIES TO:** ![Yes](../media/yes-icon.png)SQL Server ![Yes](../media/yes-icon.png)Azure SQL Database (Managed Instance only) ![No](../media/no-icon.png)Azure Synapse Analytics (SQL DW) ![No](../media/no-icon.png)Parallel Data Warehouse </Token>
+
+{% include applies-to-md.md %}
 
 This folder contains the script [DB Mirroring - Master Control Job and Alert.sql](DB%20Mirroring%20-%20Master%20Control%20Job%20and%20Alert.sql) which can automatically **enable or disable SQL Server jobs** based on the **Database Mirroring role** of their respective database(s).
 
