@@ -12,4 +12,9 @@ share-links-active:
   facebook: true
   google: true
   linkedin: true
+navbar-links:
+  Availability Groups: "availability-groups"
+  Database Mirroring: "database-mirroring"
+  Classic Version: "classic"
+  Madeira Data Solutions: "https://www.madeiradata.com"
 theme: jekyll-theme-minimal
