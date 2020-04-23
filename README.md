@@ -6,25 +6,24 @@ This repository contains solutions to properly control and maintain **scheduled 
 
 This solution is an improved version of the scripts provided at [Automatically Enable or Disable Jobs Based on HADR Role](https://eitanblumin.com/2018/11/06/automatically-enable-or-disable-jobs-based-on-hadr-role/).
 
-## Permissions
-
-Only members of the `sysadmin` fixed server role can run these scripts.
-
 ## Availability Groups
 
-The relevant scripts for Availability Groups are provided in the [`availability-groups` folder](availability-groups/).
+The relevant scripts for Availability Groups are provided in the [availability-groups folder](availability-groups/README).
 
-Script can be downloaded here: [`AlwaysOn - Master Control Job and Alert.sql`](availability-groups/AlwaysOn%20-%20Master%20Control%20Job%20and%20Alert.sql)
+- [`AlwaysOn - Master Control Job and Alert.sql`](availability-groups/AlwaysOn%20-%20Master%20Control%20Job%20and%20Alert.sql)
 
 ## Database Mirroring
 
-The relevant scripts for Database Mirroring are provided in the [`database-mirroring` folder](database-mirroring/).
+The relevant scripts for Database Mirroring are provided in the [database-mirroring folder](database-mirroring/README).
 
-Script can be downloaded here: [`DB Mirroring - Master Control Job and Alert.sql`](database-mirroring/DB%20Mirroring%20-%20Master%20Control%20Job%20and%20Alert.sql)
+- [`DB Mirroring - Master Control Job and Alert.sql`](database-mirroring/DB%20Mirroring%20-%20Master%20Control%20Job%20and%20Alert.sql)
 
 ## Classic Version
 
-This repository also contains the "classic" versions of the scripts, provided in the [`classic` folder](classic/).
+This repository also contains the "classic" versions of the scripts, provided in the [classic folder](classic/README).
+
+- [`ChangeJobStatusBasedOnHADR.sql`](classic/ChangeJobStatusBasedOnHADR.sql)
+- [`ChangeJobStatusBasedOnMirroring.sql`](classic/ChangeJobStatusBasedOnMirroring.sql)
 
 ## License
 
