@@ -1,6 +1,6 @@
 # SQL Server Jobs & HA/DR
 
-This repository contains scripts to automatically enable or disable specific **scheduled jobs on SQL Servers** based on the database role **Availability Groups** or **Database Mirroring**.
+This repository contains scripts to automatically enable or disable specific **scheduled jobs on SQL Servers** based on the database role in **Availability Groups** or **Database Mirroring**.
 
 ## Download
 
