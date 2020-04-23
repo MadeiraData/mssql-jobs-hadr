@@ -25,9 +25,11 @@
         <span id="logo"></span>
 
         <a href="{{ site.github.repository_url }}" class="button fork"><strong>View On GitHub</strong></a>
-            <ul>
-              <li><a href="{{ site.baseurl }}" class="button">Home</a></li>
-            </ul>
+        <a href="{{ site.baseurl }}" class="button"><strong>Home</strong></a>
+        <a href="{{ site.nav.alwayson }}" class="button">AlwaysOn</a>
+        <a href="{{ site.nav.mirroring }}" class="button">Mirroring</a>
+        <a href="{{ site.nav.classic }}" class="button">Classic</a>
+        
         {% if site.show_downloads %}
           <div class="downloads">
             <span>Downloads:</span>
