@@ -28,7 +28,7 @@ Specifically, where the jobs should run:
 
 ## Permissions
 
-TBA
+Only members of the `sysadmin` fixed server role can run this script.
 
 ## Examples
 
