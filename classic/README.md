@@ -4,8 +4,8 @@ This repository contains scripts to automatically enable or disable specific **s
 
 ## Download
 
-- [`ChangeJobStatusBasedOnHADR.sql`](ChangeJobStatusBasedOnHADR.sql)
-- [`ChangeJobStatusBasedOnMirroring.sql`](ChangeJobStatusBasedOnMirroring.sql)
+- [ChangeJobStatusBasedOnHADR.sql](ChangeJobStatusBasedOnHADR.sql)
+- [ChangeJobStatusBasedOnMirroring.sql](ChangeJobStatusBasedOnMirroring.sql)
 
 ## See Also
 
