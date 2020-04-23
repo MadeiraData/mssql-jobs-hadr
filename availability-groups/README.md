@@ -6,7 +6,7 @@ author: EitanBlumin
 ---
 # SQL Server Jobs & AlwaysOn Availability Groups Interoperability
 
-<Token>**APPLIES TO:** ![Yes](../media/yes-icon.png)SQL Server ![Yes](../media/yes-icon.png)Azure SQL Database (Managed Instance only) ![No](../media/no-icon.png)Azure Synapse Analytics (SQL DW) ![No](../media/no-icon.png)Parallel Data Warehouse </Token>
+{% include applies-to-md.md %}
 
 This folder contains the script [AlwaysOn - Master Control Job and Alert.sql](AlwaysOn%20-%20Master%20Control%20Job%20and%20Alert.sql) which can automatically **enable or disable SQL Server jobs** based on the **Availability Groups role** of their respective database(s).
 
