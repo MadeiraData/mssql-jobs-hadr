@@ -1,9 +1,3 @@
----
-title: "SQL Server Jobs & AlwaysOn Availability Groups Interoperability (Transact-SQL) | Madeira Data Solutions"
-dev_langs: 
-  - "TSQL"
-author: EitanBlumin
----
 # SQL Server Jobs & AlwaysOn Availability Groups Interoperability
 
 {% include applies-to-md.md %}
