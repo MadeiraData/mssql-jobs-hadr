@@ -8,18 +8,23 @@ author: EitanBlumin
 
 {% include applies-to-md.md %}
 
-This folder contains the script [AlwaysOn - Master Control Job and Alert.sql](AlwaysOn%20-%20Master%20Control%20Job%20and%20Alert.sql) which can automatically **enable or disable SQL Server jobs** based on the **Availability Groups role** of their respective database(s).
+This folder contains a script which can be used to automatically **enable or disable SQL Server jobs** based on the **Availability Groups role** of their respective database(s).
 
 The script will create one **scheduled job**, and one **alert**.
 
 In this page:
 
+- [Download](#download)
 - [Prerequisites](#prerequisites)
 - [Arguments](#arguments)
 - [Remarks](#remarks)
 - [Permissions](#permissions)
 - [Examples](#examples)
 - [See Also](#see-also)
+
+## Download
+
+- [AlwaysOn - Master Control Job and Alert.sql](AlwaysOn%20-%20Master%20Control%20Job%20and%20Alert.sql)
 
 ## Prerequisites
 
