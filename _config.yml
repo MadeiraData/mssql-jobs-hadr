@@ -18,4 +18,4 @@ navbar-links:
   Classic Version: "classic"
   Madeira Data Solutions: "https://www.madeiradata.com"
 theme: jekyll-theme-leap-day
-show_downloads: "true"
+show_downloads: true
