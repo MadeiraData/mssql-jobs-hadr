@@ -1,3 +1,9 @@
+---
+title: "SQL Server Jobs & AlwaysOn Availability Groups Interoperability (Transact-SQL) | Madeira Data Solutions"
+dev_langs: 
+  - "TSQL"
+author: EitanBlumin
+---
 # SQL Server Jobs & AlwaysOn Availability Groups Interoperability
 
 <Token>**APPLIES TO:** ![Yes](../media/yes-icon.png)SQL Server ![Yes](../media/yes-icon.png)Azure SQL Database (Managed Instance only) ![No](../media/no-icon.png)Azure Synapse Analytics (SQL DW) ![No](../media/no-icon.png)Parallel Data Warehouse </Token>
@@ -27,9 +33,9 @@ See the "Arguments" section below for more info.
 
 ## Arguments
 
-`SET @MasterControlJobName = N'DB Mirroring: Master Control Job'` sets the name to be used for the master control job.
+`SET @MasterControlJobName = N'AlwaysOn: Master Control Job'` sets the name to be used for the master control job.
 
-`SET @AlertName = N'DB Mirroring: State Changes'` sets the name to be used for the alert triggered by state change events.
+`SET @AlertName = N'AlwaysOn: Role Changes'` sets the name to be used for the alert triggered by role change events.
 
 [!INCLUDE[include-xml-argument-md](../include-xml-argument-md.md)]
 
