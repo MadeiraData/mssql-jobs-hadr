@@ -37,7 +37,7 @@ See the "Arguments" section below for more info.
 
 `SET @AlertName = N'AlwaysOn: Role Changes'` sets the name to be used for the alert triggered by role change events.
 
-[!INCLUDE[include-xml-argument-md](../include-xml-argument-md.md)]
+{% include include-xml-argument-md.md %}
 
 ## Remarks
 
