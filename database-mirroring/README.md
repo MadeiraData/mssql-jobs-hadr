@@ -1,9 +1,3 @@
----
-title: "SQL Server Jobs & Database Mirroring Interoperability (Transact-SQL) | Madeira Data Solutions"
-dev_langs: 
-  - "TSQL"
-author: EitanBlumin
----
 # SQL Server Jobs & Database Mirroring Interoperability
 
 {% include applies-to-md.md %}
