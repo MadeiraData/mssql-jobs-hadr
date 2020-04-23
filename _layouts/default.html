@@ -25,20 +25,23 @@
         <span id="logo"></span>
 
         <a href="{{ site.github.repository_url }}" class="button fork"><strong>View On GitHub</strong></a>
-        <a href="{{ site.baseurl }}" class="button fork"><strong>Home</strong></a>
-        <a href="{{ site.nav.alwayson }}" class="button fork">AlwaysOn</a>
-        <a href="{{ site.nav.mirroring }}" class="button fork">Mirroring</a>
-        <a href="{{ site.nav.classic }}" class="button fork">Classic</a>
+          <div class="downloads">
         
         {% if site.show_downloads %}
-          <div class="downloads">
+            <ul>
+              <li><a href="{{ site.baseurl }}" class="button"><strong>Home</strong></a></li>
+              <li><a href="{{ site.nav.alwayson }}" class="button">AlwaysOn</a></li>
+              <li><a href="{{ site.nav.mirroring }}" class="button">Mirroring</a></li>
+              <li><a href="{{ site.nav.classic }}" class="button">Classic</a></li>
+            </ul>
+            
             <span>Downloads:</span>
             <ul>
               <li><a href="{{ site.github.zip_url }}" class="button">ZIP</a></li>
               <li><a href="{{ site.github.tar_url }}" class="button">TAR</a></li>
             </ul>
-          </div>
         {% endif %}
+          </div>
       </div><!-- end banner -->
 
     <div class="wrapper">
