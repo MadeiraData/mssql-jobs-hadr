@@ -1,25 +1,32 @@
----
-title: "SQL Server Jobs & Database Mirroring Interoperability (Transact-SQL) | Madeira Data Solutions"
-dev_langs: 
-  - "TSQL"
-author: EitanBlumin
----
 # SQL Server Jobs & Database Mirroring Interoperability
 
-<Token>**APPLIES TO:** ![Yes](../media/yes-icon.png)SQL Server ![Yes](../media/yes-icon.png)Azure SQL Database (Managed Instance only) ![No](../media/no-icon.png)Azure Synapse Analytics (SQL DW) ![No](../media/no-icon.png)Parallel Data Warehouse </Token>
+{% include applies-to-md.md %}
 
-This folder contains the script [DB Mirroring - Master Control Job and Alert.sql](DB%20Mirroring%20-%20Master%20Control%20Job%20and%20Alert.sql) which can automatically **enable or disable SQL Server jobs** based on the **Database Mirroring role** of their respective database(s).
+This folder contains a script which can be used to automatically **enable or disable SQL Server jobs** based on the **Database Mirroring role** of their respective database(s).
 
 The script will create one **scheduled job**, and one **alert**.
 
 In this page:
 
-- [Prerequisites](#prerequisites)
+- [Download](#download)
 - [Arguments](#arguments)
+- [Prerequisites](#prerequisites)
 - [Remarks](#remarks)
 - [Permissions](#permissions)
 - [Examples](#examples)
 - [See Also](#see-also)
+
+## Download
+
+- [DB Mirroring - Master Control Job and Alert.sql](DB%20Mirroring%20-%20Master%20Control%20Job%20and%20Alert.sql)
+
+## Arguments
+
+`SET @MasterControlJobName = N'DB Mirroring: Master Control Job'` sets the name to be used for the master control job.
+
+`SET @AlertName = N'DB Mirroring: State Changes'` sets the name to be used for the alert triggered by state change events.
+
+{% include include-xml-argument-md.md %}
 
 ## Prerequisites
 
@@ -30,14 +37,6 @@ To install the script, simply run it on your servers involved in an HA/DR archit
 You may change the values of the variables at the top of the script, if you want to customize the solution.
 
 See the "Arguments" section below for more info.
-
-## Arguments
-
-`SET @MasterControlJobName = N'DB Mirroring: Master Control Job'` sets the name to be used for the master control job.
-
-`SET @AlertName = N'DB Mirroring: State Changes'` sets the name to be used for the alert triggered by state change events.
-
-[!INCLUDE[include-xml-argument-md](../include-xml-argument-md.md)]
 
 ## Remarks
 
