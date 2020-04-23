@@ -1,4 +1,4 @@
-# SQL Server Jobs & AlwaysOn Availability Groups Interoperability
+# SQL Server Jobs & AlwaysOn Interoperability
 
 {% include applies-to-md.md %}
 
