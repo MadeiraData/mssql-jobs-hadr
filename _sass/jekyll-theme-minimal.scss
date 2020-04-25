@@ -171,23 +171,22 @@ strong {
   color:#222;
 }
 
-/*ul.navigation {
-    list-style: none;
-    padding: 0;
+ul.navigation {
+    list-style: square;
+    /*padding: 0;*/
 }
-
+/*
 .navigation li {
     float: left;
 }*/
 
 .navigation a {
-    line-height: 1;
     display: block;
     text-align: left;
 }
 
 .navigation a:hover, .navigation a:focus {
-    color: #267CB9;
+    color: #069;
     /*font-weight:bold;*/
 }
 
