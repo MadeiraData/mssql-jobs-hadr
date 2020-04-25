@@ -14,5 +14,5 @@ nav:
   alwayson: "/availability-groups"
   mirroring: "/database-mirroring"
   classic: "/classic"
-theme: jekyll-theme-leap-day
+theme: jekyll-theme-minimal
 show_downloads: true
