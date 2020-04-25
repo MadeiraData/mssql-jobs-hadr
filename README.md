@@ -31,6 +31,6 @@ This solution is released under the [MIT License](LICENSE), and is provided "as-
 
 ## Contribution
 
-This is an open-source solution. Please feel free to [create issues](issues) if you want to submit bug reports or feature requests.
+This is an open-source solution. Please feel free to [create issues]({{ site.github.repository_url }}/issues) if you want to submit bug reports or feature requests.
 
 You may also **fork** the solution to your account and submit pull requests if you want to contribute!
