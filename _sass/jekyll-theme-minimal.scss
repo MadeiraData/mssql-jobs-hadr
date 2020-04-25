@@ -86,6 +86,12 @@ pre {
     overflow-x: auto;
 }
 
+pre code {
+    border: unset;
+    padding: unset;
+    border-radius: unset;
+}
+
 table {
   width:100%;
   border-collapse:collapse;
