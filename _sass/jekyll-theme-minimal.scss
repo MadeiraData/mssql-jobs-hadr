@@ -235,7 +235,7 @@ footer {
         margin: 0;
     }
 
-    header, section, footer {
+    header, section, footer, .nav {
         float: none;
         position: static;
         width: auto;
@@ -262,8 +262,8 @@ footer {
         top: 52px;
     }
 
-    .navigation {
-        margin-top: 52px;
+    .navigation, .nav {
+        width: 99%;
     }
 }
 
