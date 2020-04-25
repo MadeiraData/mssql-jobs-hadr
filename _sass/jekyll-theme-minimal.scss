@@ -67,7 +67,7 @@ blockquote {
   font-style:italic;
 }
 
-code, pre {
+code {
     font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, Consolas, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
     color: #333;
     background: #f8f8f8;
@@ -77,9 +77,13 @@ code, pre {
 }
 
 pre {
-    overflow-x: auto;
+    font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, Consolas, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
+    color: #333;
+    background: #f8f8f8;
+    border: 1px solid #e5e5e5;
     padding: 8px 15px;
     border-radius: 5px;
+    overflow-x: auto;
 }
 
 table {
