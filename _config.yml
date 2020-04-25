@@ -2,20 +2,17 @@ baseurl: "/mssql-jobs-hadr"
 logo: /media/madeira_icon.png
 social-network-links:
   rss: false
-  email: "eitan@madeiradata.com"
-  google-plus: +EitanBlumin
-  linkedin: eitanblumin
-  github: EitanBlumin
-  twitter: EitanBlumin
+  email: "info@madeiradata.com"
+  linkedin: madeira-sql-server-services
+  github: MadeiraData
+  twitter: Madeira_Data
 share-links-active:
   twitter: true
   facebook: true
-  google: true
   linkedin: true
-navbar-links:
-  Availability Groups: "availability-groups"
-  Database Mirroring: "database-mirroring"
-  Classic Version: "classic"
-  Madeira Data Solutions: "https://www.madeiradata.com"
-theme: jekyll-theme-leap-day
+nav:
+  alwayson: "/availability-groups"
+  mirroring: "/database-mirroring"
+  classic: "/classic"
+theme: jekyll-theme-minimal
 show_downloads: true
