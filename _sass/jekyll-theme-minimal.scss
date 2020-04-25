@@ -154,7 +154,7 @@ ul.downloads {
   color:#676767;
   display:block;
   text-align:center;
-  padding-top:6px;
+  /*padding-top:6px;*/
   height:34px;
 }
 
@@ -235,7 +235,7 @@ footer {
         margin: 0;
     }
 
-    header, section, footer, .downloads {
+    header, section, footer {
         float: none;
         position: static;
         width: auto;
@@ -262,7 +262,7 @@ footer {
         top: 52px;
     }
 
-    ul.navigation {
+    .navigation {
         margin-top: 52px;
     }
 }
@@ -290,16 +290,12 @@ footer {
         padding: 15px;
     }
 
-    .downloads {
+    .downloads, .navigation {
         width: 99%;
     }
 
     .downloads li, .navigation li, .downloads li + li + li {
         width: 33%;
-    }
-
-    .navigation {
-        width: 99%;
     }
 }
 

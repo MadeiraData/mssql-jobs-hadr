@@ -29,10 +29,10 @@
                 {{ site.description | default: site.github.project_tagline }}
             </p>
 
-            <ul class="downloads">
-                <li><a href="{{ site.nav.alwayson | relative_url }}">AlwaysOn</a></li>
-                <li><a href="{{ site.nav.mirroring | relative_url }}">Mirroring</a></li>
-                <li><a href="{{ site.nav.classic | relative_url }}">Classic</a></li>
+            <ul class="downloads nav">
+                <li><a href="{{ site.nav.alwayson | relative_url }}"><strong>AlwaysOn</strong></a></li>
+                <li><a href="{{ site.nav.mirroring | relative_url }}"><strong>Mirroring</strong></a></li>
+                <li><a href="{{ site.nav.classic | relative_url }}"><strong>Classic</strong></a></li>
             </ul>
 
             {% if site.show_downloads %}
