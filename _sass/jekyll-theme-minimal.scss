@@ -278,6 +278,10 @@ footer {
   pre, code {
     word-wrap:normal;
   }
+
+  .navigation {
+      margin-top: 52px;
+  }
 }
 
 @media print, screen and (max-width: 480px) {
