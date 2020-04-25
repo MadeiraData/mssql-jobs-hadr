@@ -147,7 +147,7 @@ ul.downloads {
 }
 
 .downloads a:hover, .downloads a:focus {
-  color:#494949;
+  color:#675C5C;
   /*font-weight:bold;*/
 }
 
@@ -169,6 +169,30 @@ strong {
   font-size:14px;
   display:block;
   color:#222;
+}
+
+ul.navigation {
+    list-style: none;
+    padding: 0;
+}
+
+.navigation li {
+    float: left;
+}
+
+.navigation a {
+    line-height: 1;
+    font-size: 11px;
+    color: #676767;
+    display: block;
+    text-align: center;
+    padding-top: 6px;
+    height: 34px;
+}
+
+.navigation a:hover, .navigation a:focus {
+    color: #675C5C;
+    /*font-weight:bold;*/
 }
 
 section {
