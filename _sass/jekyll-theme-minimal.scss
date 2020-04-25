@@ -294,14 +294,12 @@ footer {
         width: 99%;
     }
 
-    .downloads li, .downloads li + li + li {
+    .downloads li, .navigation li, .downloads li + li + li {
         width: 33%;
     }
 
-    ul.navigation {
+    .navigation {
         width: 99%;
-        margin-top: 0px;
-        padding-top: 0px;
     }
 }
 
