@@ -30,6 +30,10 @@ You may change the values of the variables at the top of the script, if you want
 
 See the "Arguments" section below for more info.
 
+If you're in need of understanding the possible logical connections between your scheduled jobs, your databases, and your Availability Groups, you may use the following query:
+
+- [AlwaysOn - Query to Inspect Job Details.sql](AlwaysOn%20-%20Inspect%20Job%20Details.sql)
+
 ## Arguments
 
 `SET @MasterControlJobName = N'AlwaysOn: Master Control Job'` sets the name to be used for the master control job.
