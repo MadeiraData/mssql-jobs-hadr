@@ -58,7 +58,35 @@ Only members of the `sysadmin` fixed server role can run this script.
 
 ## Examples
 
-TBA
+#### A. Composite Example
+
+The following example demonstrates a combination of several use cases:
+
+```
+SET @MasterControlJobName = N'AlwaysOn: Master Control Job'
+SET @AlertName = N'AlwaysOn: Role Changes'
+
+SET @SpecialConfigurations = N'<config>
+<item type="job" enablewhen="secondary">Contoso %</item>
+<item type="job" enablewhen="both">AdventureWorks Validation Checks</item>
+<item type="step" enablewhen="secondary">Generate BI Report</item>
+<item type="category" enablewhen="both">SQL Sentry Jobs</item>
+<item type="category" enablewhen="both">Database Maintenance</item>
+<item type="job" enablewhen="secondary" dbname="AdventureWorksDWH">SSIS AdventureWorksDWH Send Reports</item>
+<item type="job" enablewhen="primary" dbname="WideWorldImportersLT">WideWorldImporters Delete Old Data</item>
+<item type="job" enablewhen="never" dbname="audit">Do not run - %</item>
+</config>'
+```
+
+The example above demonstrates the following use-cases:
+
+- All jobs with names starting with **"Contoso "** should only be enabled on the **SECONDARY**.
+- The job named **"AdventureWorks Validation Checks"** should be enabled on **both** PRIMARY and SECONDARY servers.
+- Any job with a step named **"Generate BI Report"** should be enabled on the **SECONDARY**.
+- Any job with either the **"SQL Sentry Jobs"** or the **"Database Maintenance" categories** should be enabled on **both** PRIMARY and SECONDARY servers.
+- The job named **"SSIS AdventureWorksDWH Send Reports"** should be enabled on the **SECONDARY** only.
+- The job named **"WideWorldImporters Delete Old Data"** should be enabled on the **PRIMARY** only.
+- Any job with a name starting with **"Do not run - "** should always remain **disabled** regardless of HA/DR role.
 
 ## See Also
 
