@@ -10,20 +10,20 @@ This solution is an improved version of the scripts provided at [Automatically E
 
 The relevant scripts for Availability Groups are provided in the [availability-groups folder](availability-groups/).
 
-- [AlwaysOn - Master Control Job and Alert.sql](availability-groups/AlwaysOn%20-%20Master%20Control%20Job%20and%20Alert.sql)
+- [🔽 AlwaysOn - Master Control Job and Alert.sql](availability-groups/AlwaysOn%20-%20Master%20Control%20Job%20and%20Alert.sql)
 
 ## Database Mirroring
 
 The relevant scripts for Database Mirroring are provided in the [database-mirroring folder](database-mirroring/).
 
-- [DB Mirroring - Master Control Job and Alert.sql](database-mirroring/DB%20Mirroring%20-%20Master%20Control%20Job%20and%20Alert.sql)
+- [🔽 DB Mirroring - Master Control Job and Alert.sql](database-mirroring/DB%20Mirroring%20-%20Master%20Control%20Job%20and%20Alert.sql)
 
 ## Classic Version
 
 This repository also contains the "classic" versions of the scripts, provided in the [classic folder](classic/).
 
-- [ChangeJobStatusBasedOnHADR.sql](classic/ChangeJobStatusBasedOnHADR.sql)
-- [ChangeJobStatusBasedOnMirroring.sql](classic/ChangeJobStatusBasedOnMirroring.sql)
+- [🔽 ChangeJobStatusBasedOnHADR.sql](classic/ChangeJobStatusBasedOnHADR.sql)
+- [🔽 ChangeJobStatusBasedOnMirroring.sql](classic/ChangeJobStatusBasedOnMirroring.sql)
 
 ## License
 
