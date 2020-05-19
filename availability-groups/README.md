@@ -18,7 +18,7 @@ In this page:
 
 ## Download
 
-- [AlwaysOn - Master Control Job and Alert.sql](AlwaysOn%20-%20Master%20Control%20Job%20and%20Alert.sql)
+- [🔽 AlwaysOn - Master Control Job and Alert.sql](AlwaysOn%20-%20Master%20Control%20Job%20and%20Alert.sql)
 
 ## Prerequisites
 
