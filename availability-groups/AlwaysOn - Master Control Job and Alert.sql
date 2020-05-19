@@ -1,11 +1,9 @@
 USE [msdb];
 
-DECLARE @MasterControlJobName SYSNAME, @AlertName SYSNAME
+DECLARE @MasterControlJobName SYSNAME, @AlertName SYSNAME, @SpecialConfigurations XML;
 
 SET @MasterControlJobName = N'AlwaysOn: Master Control Job'
 SET @AlertName = N'AlwaysOn: Role Changes'
-
-DECLARE @SpecialConfigurations XML;
 
 SET @SpecialConfigurations = N'<config>
 <item type="job" enablewhen="secondary">Contoso %</item>

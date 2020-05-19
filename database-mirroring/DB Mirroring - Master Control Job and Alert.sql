@@ -4,6 +4,7 @@ DECLARE @MasterControlJobName SYSNAME, @AlertName SYSNAME, @SpecialConfiguration
 
 SET @MasterControlJobName = N'DB Mirroring: Master Control Job'
 SET @AlertName = N'DB Mirroring: State Changes'
+
 SET @SpecialConfigurations = N'<config>
 <item type="job" enablewhen="secondary">Contoso %</item>
 <item type="job" enablewhen="both">AdventureWorks Validation Checks</item>
