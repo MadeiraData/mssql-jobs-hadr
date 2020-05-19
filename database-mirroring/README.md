@@ -18,7 +18,7 @@ In this page:
 
 ## Download
 
-- [DB Mirroring - Master Control Job and Alert.sql](DB%20Mirroring%20-%20Master%20Control%20Job%20and%20Alert.sql)
+- [🔽 DB Mirroring - Master Control Job and Alert.sql](DB%20Mirroring%20-%20Master%20Control%20Job%20and%20Alert.sql)
 
 ## Prerequisites
 
