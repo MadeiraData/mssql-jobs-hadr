@@ -28,6 +28,7 @@ The XML should have the following structure:
 |secondary|Enable when on **Secondary only**.|  
 |both|Enable when on **both Primary and Secondary**.|
 |never|**Never** enable (if you want certain jobs to always remain disabled).|
+|ignore|**Ignore** the jobs entirely (don't disable or enable automatically).|
 
 `item name qualifier` is the name of the relevant item (job/step/category). This value is used in a **LIKE** operator, and therefore supports **LIKE** pattern wildcards such as `%`, `_`, etc. Please see the [**LIKE** operator documentation](https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql#arguments) for more info on **LIKE** expression patterns.
 
