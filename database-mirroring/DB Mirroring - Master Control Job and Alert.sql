@@ -6,14 +6,11 @@ SET @MasterControlJobName = N'DB Mirroring: Master Control Job'
 SET @AlertName = N'DB Mirroring: State Changes'
 
 SET @SpecialConfigurations = N'<config>
-<item type="job" enablewhen="secondary">Contoso %</item>
-<item type="job" enablewhen="both">AdventureWorks Validation Checks</item>
-<item type="step" enablewhen="secondary">Generate BI Report</item>
-<item type="category" enablewhen="both">SQL Sentry Jobs</item>
+<item type="category" enablewhen="never">JobsToDisable</item>
+<item type="category" enablewhen="ignore">SQL Sentry Jobs</item>
 <item type="category" enablewhen="both">Database Maintenance</item>
-<item type="job" enablewhen="secondary" dbname="AdventureWorksDWH">SSIS AdventureWorksDWH Send Reports</item>
-<item type="job" enablewhen="primary" dbname="WideWorldImportersLT">WideWorldImporters Delete Old Data</item>
-<item type="job" enablewhen="never" dbname="audit">Do not run - %</item>
+<item type="category" enablewhen="both">AlwaysOn</item>
+<item type="category" enablewhen="both">Mirroring</item>
 </config>'
 
 DECLARE @ReturnCode INT, @CMD NVARCHAR(MAX), @saName SYSNAME
@@ -36,21 +33,24 @@ BEGIN
 	IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback;
 END
 
-SET @CMD = N'DECLARE @SpecialConfigurations XML;
+SET @CMD = N'SET NOCOUNT, ARITHABORT, XACT_ABORT, QUOTED_IDENTIFIER ON;
+DECLARE @WhatIf BIT = 0;
+
+DECLARE @SpecialConfigurations XML;
 
 SET @SpecialConfigurations = N''' + REPLACE(CONVERT(nvarchar(max), @SpecialConfigurations), '''', '''''')  + N'''
 
-SET NOCOUNT ON;
-DECLARE @JobDesiredState INT, @CurrJob NVARCHAR(500);
+DECLARE @JobDesiredState INT, @CurrentRole VARCHAR(10), @CurrJob NVARCHAR(500);
 
 DECLARE JobsToUpdate CURSOR
 READ_ONLY FORWARD_ONLY
 FOR
-SELECT job_name, desired_state
+SELECT job_name, role_desc, desired_state
 FROM
 (
 SELECT j.job_id, j.name AS job_name, jc.name AS category_name, j.enabled
---, ag.role_desc
+--, Config.EnableWhen, db.dbname
+, MAX(ag.role_desc) AS role_desc
 , desired_state =
  MAX(CASE WHEN Config.EnableWhen = ''never'' THEN 0
 	WHEN DATABASEPROPERTYEX(db.dbname, ''Status'') = ''ONLINE'' AND Config.EnableWhen IN (''secondary'', ''both'') AND ag.role_desc <> ''PRINCIPLE'' THEN 1
@@ -84,21 +84,23 @@ OR (Config.DBName = ag.databasename)
 CROSS APPLY
 (VALUES(COALESCE(Config.DBName, ag.databasename, js.database_name))) AS db(dbname)
 WHERE (Config.DBName IS NOT NULL OR ag.databasename IS NOT NULL) -- at least one combination found
+AND (Config.EnableWhen IS NULL OR Config.EnableWhen <> ''ignore'')
 group by j.job_id, j.name, jc.name, j.enabled
---, ag.role_desc
+--, Config.EnableWhen, db.dbname
 ) AS q
 WHERE enabled <> desired_state
+ORDER BY job_name;
 
 OPEN JobsToUpdate
-FETCH NEXT FROM JobsToUpdate INTO @CurrJob, @JobDesiredState
+FETCH NEXT FROM JobsToUpdate INTO @CurrJob, @CurrentRole, @JobDesiredState
 
 WHILE @@FETCH_STATUS = 0
 BEGIN
 	RAISERROR(N''Job: "%s", New Status: "%d"'', 0, 1, @CurrJob, @JobDesiredState) WITH LOG;
 
-	--EXEC msdb.dbo.sp_update_job @job_name=@CurrJob, @enabled=@JobDesiredState
+	IF @WhatIf = 0 EXEC msdb.dbo.sp_update_job @job_name=@CurrJob, @enabled=@JobDesiredState
 
-	FETCH NEXT FROM JobsToUpdate INTO @CurrJob, @JobDesiredState
+	FETCH NEXT FROM JobsToUpdate INTO @CurrJob, @CurrentRole, @JobDesiredState
 END
 
 CLOSE JobsToUpdate
@@ -119,7 +121,7 @@ EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=@MasterControlJobName,
 		@notify_level_netsend=0, 
 		@notify_level_page=0, 
 		@delete_level=0, 
-		@description=N'Author: Eitan Blumin | https://eitanblumin.com', 
+		@description=N'Source: https://madeiradata.github.io/mssql-jobs-hadr', 
 		@category_name=N'Database Mirroring', 
 		@owner_login_name=@saName, @job_id = @jobId OUTPUT
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback

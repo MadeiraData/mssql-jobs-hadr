@@ -2,21 +2,18 @@ USE [msdb];
 
 DECLARE @MasterControlJobName SYSNAME, @AlertName SYSNAME, @SpecialConfigurations XML;
 
-SET @MasterControlJobName = N'AlwaysOn: Master Control Job'
-SET @AlertName = N'AlwaysOn: Role Changes'
+SET @MasterControlJobName = N'AlwaysOn: Master Control Job';
+SET @AlertName = N'AlwaysOn: Role Changes';
 
 SET @SpecialConfigurations = N'<config>
-<item type="job" enablewhen="secondary">Contoso %</item>
-<item type="job" enablewhen="both">AdventureWorks Validation Checks</item>
-<item type="step" enablewhen="secondary">Generate BI Report</item>
-<item type="category" enablewhen="both">SQL Sentry Jobs</item>
+<item type="category" enablewhen="never">JobsToDisable</item>
+<item type="category" enablewhen="ignore">SQL Sentry Jobs</item>
 <item type="category" enablewhen="both">Database Maintenance</item>
-<item type="job" enablewhen="secondary" dbname="AdventureWorksDWH">SSIS AdventureWorksDWH Send Reports</item>
-<item type="job" enablewhen="primary" dbname="WideWorldImportersLT">WideWorldImporters Delete Old Data</item>
-<item type="job" enablewhen="never" dbname="audit">Do not run - %</item>
+<item type="category" enablewhen="both">AlwaysOn</item>
+<item type="category" enablewhen="both">Mirroring</item>
 </config>'
-
-DECLARE @ReturnCode INT, @CMD NVARCHAR(MAX), @saName SYSNAME
+;
+DECLARE @ReturnCode INT, @CMD NVARCHAR(MAX), @saName SYSNAME;
 
 SELECT @saName = [name] FROM sys.server_principals WHERE sid = 0x01;
 
@@ -24,23 +21,25 @@ BEGIN TRANSACTION
 
 IF NOT EXISTS (SELECT name FROM msdb.dbo.syscategories WHERE name=N'AlwaysOn' AND category_class=1)
 BEGIN
-	PRINT N'Adding job category...'
+	PRINT N'Adding job category...';
 	EXEC @ReturnCode = msdb.dbo.sp_add_category @class=N'JOB', @type=N'LOCAL', @name=N'AlwaysOn';
 	IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback;
 END;
 
 IF EXISTS (SELECT * FROM msdb..sysjobs WHERE name = @MasterControlJobName)
 BEGIN
-	PRINT N'Deleting existing job...'
-	EXEC msdb.dbo.sp_delete_job @job_name=@MasterControlJobName, @delete_unused_schedule=1
+	PRINT N'Deleting existing job...';
+	EXEC msdb.dbo.sp_delete_job @job_name=@MasterControlJobName, @delete_unused_schedule=1;
 	IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback;
 END
 
-SET @CMD = N'DECLARE @SpecialConfigurations XML;
+SET @CMD = N'SET NOCOUNT, ARITHABORT, XACT_ABORT, QUOTED_IDENTIFIER ON;
+DECLARE @WhatIf BIT = 0;
 
-SET @SpecialConfigurations = N''' + REPLACE(CONVERT(nvarchar(max), @SpecialConfigurations), '''', '''''')  + N'''
+DECLARE @SpecialConfigurations XML;
 
-SET NOCOUNT ON;
+SET @SpecialConfigurations = N''' + REPLACE(CONVERT(nvarchar(max), @SpecialConfigurations), '''', '''''')  + N''';
+
 DECLARE @JobDesiredState INT, @CurrentRole VARCHAR(10), @CurrJob NVARCHAR(500);
 
 DECLARE JobsToUpdate CURSOR
@@ -50,11 +49,12 @@ SELECT job_name, role_desc, desired_state
 FROM
 (
 SELECT j.job_id, j.name AS job_name, jc.name AS category_name, j.enabled
+--, Config.EnableWhen, db.dbname
 , MIN(ag.role_desc) AS role_desc
---, db.dbname AS database_name, ag.secondary_role_allow_connections
 , desired_state =
  MAX(CASE WHEN Config.EnableWhen = ''never'' THEN 0
-	WHEN DATABASEPROPERTYEX(db.dbname, ''Status'') = ''ONLINE'' AND Config.EnableWhen IN (''secondary'', ''both'') AND ag.role_desc = ''SECONDARY'' AND ag.secondary_role_allow_connections > 0 THEN 1
+ 	WHEN Config.EnableWhen = ''both'' THEN 1
+	WHEN DATABASEPROPERTYEX(db.dbname, ''Status'') = ''ONLINE'' AND Config.EnableWhen = ''secondary'' AND ag.role_desc = ''SECONDARY'' AND ag.secondary_role_allow_connections > 0 THEN 1
 	WHEN DATABASEPROPERTYEX(db.dbname, ''Status'') = ''ONLINE'' AND ISNULL(Config.EnableWhen, ''primary'') <> ''secondary'' AND ag.role_desc = ''PRIMARY'' THEN 1
 	ELSE 0
   END)
@@ -80,31 +80,33 @@ from    sys.databases databaselist
 inner join sys.availability_replicas ar ON databaselist.replica_id = ar.replica_id
 inner join sys.dm_hadr_availability_replica_states ars ON ars.group_id = ar.group_id and ars.is_local = 1
 ) AS ag
-ON (Config.DBName IS NULL AND js.database_name = ag.databasename) -- or command like ''%''+ag.databasename+''%''
+ON (Config.DBName IS NULL AND js.database_name = ag.databasename)
+OR (command like ''exec ''+QUOTENAME(ag.databasename)+''.%'')
 OR (Config.DBName = ag.databasename)
 CROSS APPLY
 (VALUES(COALESCE(Config.DBName, ag.databasename, js.database_name))) AS db(dbname)
 WHERE (Config.DBName IS NOT NULL OR ag.databasename IS NOT NULL) -- at least one combination found
+AND (Config.EnableWhen IS NULL OR Config.EnableWhen <> ''ignore'')
 group by j.job_id, j.name, jc.name, j.enabled
---, db.dbname, ag.secondary_role_allow_connections, ag.role_desc
+--, Config.EnableWhen, db.dbname
 ) AS q
 WHERE enabled <> desired_state
-ORDER BY job_name
+ORDER BY job_name;
 
-OPEN JobsToUpdate
-FETCH NEXT FROM JobsToUpdate INTO @CurrJob, @CurrentRole, @JobDesiredState
+OPEN JobsToUpdate;
+FETCH NEXT FROM JobsToUpdate INTO @CurrJob, @CurrentRole, @JobDesiredState;
 
-WHILE @@FETCH_STATUS = 0
+WHILE @@FETCH_STATUS = 0 
 BEGIN
 	RAISERROR(N''Job: "%s", New Status: "%d" (role: "%s")'', 0, 1, @CurrJob, @JobDesiredState, @CurrentRole) WITH LOG;
 
-	--EXEC msdb.dbo.sp_update_job @job_name=@CurrJob, @enabled=@JobDesiredState
+	IF @WhatIf = 0 EXEC msdb.dbo.sp_update_job @job_name=@CurrJob, @enabled=@JobDesiredState;
 
-	FETCH NEXT FROM JobsToUpdate INTO @CurrJob, @CurrentRole, @JobDesiredState
+	FETCH NEXT FROM JobsToUpdate INTO @CurrJob, @CurrentRole, @JobDesiredState;
 END
 
-CLOSE JobsToUpdate
-DEALLOCATE JobsToUpdate'
+CLOSE JobsToUpdate;
+DEALLOCATE JobsToUpdate;'
 
 IF @CMD IS NULL OR @CMD = N''
 BEGIN
@@ -121,7 +123,7 @@ EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=@MasterControlJobName,
 		@notify_level_netsend=0, 
 		@notify_level_page=0, 
 		@delete_level=0, 
-		@description=N'Author: Eitan Blumin | https://eitanblumin.com', 
+		@description=N'Source: https://madeiradata.github.io/mssql-jobs-hadr', 
 		@category_name=N'AlwaysOn', 
 		@owner_login_name=@saName, @job_id = @jobId OUTPUT
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
