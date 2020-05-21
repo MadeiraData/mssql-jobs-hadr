@@ -3,6 +3,7 @@ GO
 IF OBJECT_ID('ChangeJobStatusBasedOnHADR', 'P') IS NOT NULL DROP PROCEDURE ChangeJobStatusBasedOnHADR
 GO
 /*
+Source: https://madeiradata.github.io/mssql-jobs-hadr
 --Sample usage:
 EXEC ChangeJobStatusBasedOnHADR @DBName = 'DB_to_use_as_primary_indicator'
 */
