@@ -7,7 +7,7 @@ The XML should have the following structure:
 
 ```
 <config>
-<item type="job | step | category" enablewhen="primary | secondary | both | never">item name qualifier</item>
+<item type="job | step | category" enablewhen="primary | secondary | both | never | ignore">item name qualifier</item>
 [ ... ]
 </config>
 ```
