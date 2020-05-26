@@ -34,3 +34,7 @@ This solution is released under the [MIT License](LICENSE), and is provided "as-
 This is an open-source solution. Please feel free to [create issues]({{ site.github.repository_url }}/issues) if you want to submit bug reports or feature requests.
 
 You may also **fork** the solution to your account and submit pull requests if you want to contribute!
+
+## See Also
+
+- [More Info](https://eitanblumin.com/2020/05/26/sql-jobs-based-on-hadr-role-next-level/)
