@@ -1,4 +1,4 @@
-#baseurl: "/mssql-jobs-hadr"
+baseurl: "/mssql-jobs-hadr"
 logo: /media/madeira_icon.png
 social-network-links:
   rss: false
