@@ -37,4 +37,5 @@ You may also **fork** the solution to your account and submit pull requests if y
 
 ## See Also
 
-- [More Info](https://eitanblumin.com/2020/05/26/sql-jobs-based-on-hadr-role-next-level/)
+- [Blog Post](https://eitanblumin.com/2020/05/26/sql-jobs-based-on-hadr-role-next-level/)
+- [Webinar](https://eitanblumin.com/portfolio/how-to-hadr-your-sql-jobs/)
