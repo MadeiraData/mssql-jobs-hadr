@@ -11,6 +11,7 @@ SET @SpecialConfigurations = N'<config>
 <item type="category" enablewhen="both">Database Maintenance</item>
 <item type="category" enablewhen="both">AlwaysOn</item>
 <item type="category" enablewhen="both">Mirroring</item>
+<item type="category" enablewhen="primary" dbname="ReportServer">Report Server</item>
 </config>'
 
 DECLARE @ReturnCode INT, @CMD NVARCHAR(MAX), @saName SYSNAME
