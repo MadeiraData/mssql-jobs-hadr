@@ -50,6 +50,8 @@ Only members of the `sysadmin` fixed server role can run this script.
 
 - Your **T-SQL** job steps should be set to **run on their destined databases**. Don't use any "USE" commands or 3-part-names while setting the database context to "master" or something like that. **What you specify as the "target" database in the job step - that's what the script will be using for its logic**.
 
+- If there is a disconnect between a job step's configured database context, and its actual intended database target, then you can use the `dbname` optional attribute to force-check a specific database for a given criteria of jobs.
+
 - If you're using special configurations at the step level, keep in mind that **it's enough for just one step to be enabled, in order for the script to enable the whole job**. If you have more steps in such jobs, consider the possibility that they might be executed not when you necessarily intend them to. You can use something like the `sys.database_mirroring` system table to check for a database's role.
 
 - The scripts will **automatically** detect whether a T-SQL step's context database is accessible or not. For example, if the database is a MIRROR. *If a database is found to be non-accessible, that would override any special configurations you may have had for that step*. However, if another step within the same job should be enabled, then that would **override** the override (as mentioned above, it's enough for one step to be enabled in order to enable the whole job). If you have such use cases, you should properly configure your job step outcomes to take this into consideration (for example, set the **"on failure action"** to go to another step instead of failing the job).
@@ -72,6 +74,7 @@ SET @SpecialConfigurations = N'<config>
 <item type="step" enablewhen="secondary">Generate BI Report</item>
 <item type="category" enablewhen="ignore">SQL Sentry Jobs</item>
 <item type="category" enablewhen="both">Database Maintenance</item>
+<item type="category" enablewhen="primary" dbname="ReportServer">Report Server</item>
 <item type="job" enablewhen="secondary" dbname="AdventureWorksDWH">SSIS AdventureWorksDWH Send Reports</item>
 <item type="job" enablewhen="primary" dbname="WideWorldImportersLT">WideWorldImporters Delete Old Data</item>
 <item type="job" enablewhen="never" dbname="audit">Do not run - %</item>
@@ -85,6 +88,7 @@ The example above demonstrates the following use-cases:
 - Any job with a step named **"Generate BI Report"** should be enabled on the **SECONDARY**.
 - Any job with the **"SQL Sentry Jobs"** category will be **ignored** by the script, regardless of its status.
 - Any job with the **"Database Maintenance"** category should be enabled on **both** PRIMARY and SECONDARY servers.
+- Any job with the **"Report Server"** category should be enabled only when the **ReportServer** database is PRIMARY.
 - The job named **"SSIS AdventureWorksDWH Send Reports"** should be enabled on the **SECONDARY** only.
 - The job named **"WideWorldImporters Delete Old Data"** should be enabled on the **PRIMARY** only.
 - Any job with a name starting with **"Do not run - "** should always remain **disabled** regardless of mirroring role.
