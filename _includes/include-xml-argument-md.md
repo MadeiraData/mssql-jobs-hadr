@@ -7,7 +7,7 @@ The XML should have the following structure:
 
 ```
 <config>
-<item type="job | step | category" enablewhen="primary | secondary | both | never | ignore">item name qualifier</item>
+<item type="job | step | category" enablewhen="primary | secondary | both | never | ignore" [ dbname="database_name" ] >item name qualifier</item>
 [ ... ]
 </config>
 ```
@@ -29,6 +29,13 @@ The XML should have the following structure:
 |both|Enable when on **both Primary and Secondary**.|
 |never|**Never** enable (if you want certain jobs to always remain disabled).|
 |ignore|**Ignore** the jobs entirely (don't disable or enable automatically).|
+
+`dbname` is an optional attribute used for explicitely setting which database should be checked.
+
+This attribute can be useful for several possible scenarios:
+
+- For job steps that do not have a database context, such as SSIS, Powershell, or CmdExec steps.
+- For job steps configured with a database context other than the one actually relevant for the HADR check. For example, Report Server subscription jobs are automatically configured with the `master` database context, even though they're actually dependent on the `ReportServer` database. If you include this `ReportServer` database in an HADR solution, you're gonna have a problem. But if you add an item with `dbname="ReportServer"` for all jobs in the `Report Server` category, you'll be just fine, as they'd be automatically enabled/disabled as needed.
 
 `item name qualifier` is the name of the relevant item (job/step/category). This value is used in a **LIKE** operator, and therefore supports **LIKE** pattern wildcards such as `%`, `_`, etc. Please see the [**LIKE** operator documentation](https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql#arguments) for more info on **LIKE** expression patterns.
 
