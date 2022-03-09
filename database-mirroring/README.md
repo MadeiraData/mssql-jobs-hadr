@@ -22,7 +22,7 @@ In this page:
 
 ## Prerequisites
 
-The script only supports **SQL Server versions 2008 and later**, that have **SQL Server Agent** available (**Express** editions and **SQL Azure DB** are _not_ supported).
+The script only supports **SQL Server versions 2008 and later**, that have **SQL Server Agent** available (**Express** editions and **Azure SQL Databases** are _not_ supported).
 
 To install the script, simply run it on your servers involved in an HA/DR architecture.
 
@@ -95,4 +95,5 @@ The example above demonstrates the following use-cases:
 
 ## See Also
 
-- [More Info](https://eitanblumin.com/?p=938)
+- [Blog Post: Control SQL Jobs based on HADR Role – Taking it to the Next Level](https://eitanblumin.com/2020/05/26/sql-jobs-based-on-hadr-role-next-level/)
+- [Webinar: How to HADR Your SQL Jobs](https://eitanblumin.com/portfolio/how-to-hadr-your-sql-jobs/)
