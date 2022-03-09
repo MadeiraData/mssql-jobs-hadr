@@ -4,23 +4,32 @@ This repository contains solutions to properly control and maintain **scheduled 
 
 ![Cover Image](media/sql-jobs-hadr.png)
 
-This solution is an improved version of the scripts provided at [Automatically Enable or Disable Jobs Based on HADR Role](https://eitanblumin.com/2018/11/06/automatically-enable-or-disable-jobs-based-on-hadr-role/).
+Using this solution, you can automatically control which SQL Agent jobs would be executed on which replica, based on several possible criteria (PRIMARY / SECONDARY database role, job name, job category, etc.).
+
+After implementing this solution:
+
+- No longer will you be needing to manually implement an HA/DR role check in each new job or job step that you create.
+- Jobs would no longer be executing without actually doing anything because a database's role wasn't the right one.
+- No more jobs would fail because they were executed on a secondary/read-only/unreadable database.
+- MSDB job history tables would not be needlessly bloated.
+
+This solution is an improved version of the scripts provided at the blog post [Automatically Enable or Disable Jobs Based on HADR Role](https://eitanblumin.com/2018/11/06/automatically-enable-or-disable-jobs-based-on-hadr-role/).
 
 ## Availability Groups
 
-The relevant scripts for Availability Groups are provided in the [availability-groups folder](availability-groups/).
+This solution is available for AlwaysOn Availability Groups for SQL Server 2012 and later. [Click here for more details](availability-groups/), or download below:
 
 - [🔽 AlwaysOn - Master Control Job and Alert.sql](availability-groups/AlwaysOn%20-%20Master%20Control%20Job%20and%20Alert.sql)
 
 ## Database Mirroring
 
-The relevant scripts for Database Mirroring are provided in the [database-mirroring folder](database-mirroring/).
+This solution is available for Database Mirroring for SQL Server 2008 and later. [Click here for more details](database-mirroring/), or download below:
 
 - [🔽 DB Mirroring - Master Control Job and Alert.sql](database-mirroring/DB%20Mirroring%20-%20Master%20Control%20Job%20and%20Alert.sql)
 
 ## Classic Version
 
-This repository also contains the "classic" versions of the scripts, provided in the [classic folder](classic/).
+This repository also contains the "classic" versions of the scripts. [Click here for more details](classic/), or download below:
 
 - [🔽 ChangeJobStatusBasedOnHADR.sql](classic/ChangeJobStatusBasedOnHADR.sql)
 - [🔽 ChangeJobStatusBasedOnMirroring.sql](classic/ChangeJobStatusBasedOnMirroring.sql)
@@ -37,5 +46,7 @@ You may also **fork** the solution to your account and submit pull requests if y
 
 ## See Also
 
-- [Blog Post](https://eitanblumin.com/2020/05/26/sql-jobs-based-on-hadr-role-next-level/)
-- [Webinar](https://eitanblumin.com/portfolio/how-to-hadr-your-sql-jobs/)
+- [Blog Post: Control SQL Jobs based on HADR Role – Taking it to the Next Level](https://eitanblumin.com/2020/05/26/sql-jobs-based-on-hadr-role-next-level/)
+- [Webinar: How to HADR Your SQL Jobs](https://eitanblumin.com/portfolio/how-to-hadr-your-sql-jobs/)
+
+Tell your friends! Share this link: [bit.ly/HADRMyJobs](https://bit.ly/HADRMyJobs)
