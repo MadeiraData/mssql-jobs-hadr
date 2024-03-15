@@ -48,5 +48,7 @@ You may also **fork** the solution to your account and submit pull requests if y
 
 - [Blog Post: Control SQL Jobs based on HADR Role – Taking it to the Next Level](https://eitanblumin.com/2020/05/26/sql-jobs-based-on-hadr-role-next-level/)
 - [Webinar: How to HADR Your SQL Jobs](https://eitanblumin.com/portfolio/how-to-hadr-your-sql-jobs/)
+- [Compare-AGReplicaJobs - Powershell Cmdlet to compare and align jobs between AG replicas](https://github.com/MadeiraData/MadeiraToolbox/tree/master/High%20Availability%20Solutions/Compare-AGReplicaJobs)
+- [Sync-DbaAvailabilityGroup - Powershell Cmdlet from DbaTools to synchronize all server-level objects between replicas](https://docs.dbatools.io/Sync-DbaAvailabilityGroup)
 
 Tell your friends! Share this link: [bit.ly/HADRMyJobs](https://bit.ly/HADRMyJobs)
